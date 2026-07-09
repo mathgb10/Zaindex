@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaindex</title>
+
+    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <main>
+        <nav class="navbar">
+            <header class="logo">
+                <h1>
+                    Zaindex
+                </h1>
+            </header>
+            <ul class="links">
+                <li><button class="btnLinks" data-link="index" onclick="sendLink('index')"><i
+                            class="fa-solid fa-house"></i>Home</button></li>
+                <li><button class="btnLinks" data-link="anime" onclick="sendLink('anime')"><i
+                            class="fa-solid fa-tv"></i>Animes</button></li>
+                <li><button class="btnLinks" data-link="manga" onclick="sendLink('manga')"><i
+                            class="fa-solid fa-book"></i>Mangas</button></li>
+            </ul>
+            <div class="perfil">
+                <button><i class="fa-solid fa-circle-user"></i></button>
+            </div>
+        </nav>
+
+        <section class="carrosel">
+
+            <img id="img-placeholder" src="" alt="">
+
+            <div class="overlay"></div>
+
+            <div id="infos-placeholder">
+                <h1 id="txt-placeholder">Carregando...</h1>
+
+                <button id="btn-placeholder">
+                    <i class="fa-solid fa-play"></i>
+                    Veja mais
+                </button>
+            </div>
+
+            <div class="carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </section>
+
+        <section class="main-content">
+            <div class="content">
+                <header>
+                    <h2>Os melhores 25:</h2>
+                </header>                
+                <div id="melhores-placeholder">
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/index.js" defer></script>
+</body>
+
+</html>
