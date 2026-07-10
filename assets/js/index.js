@@ -20,16 +20,14 @@ window.onload = () => {
     }
 
     // Funções que colocaram contéudos na página
-    getCarrosel(url);
-    getMelhoresContent(url);
-    getTemporadaContent();
+    renderContent(url);
 }
 
 let scrolladas = 0;
-window.onscroll = ()=>{
+window.onscroll = () => {
     document.querySelector('.navbar').style.position = 'fixed';
     const altura_navbar = document.querySelector('.navbar').offsetHeight;
-    console.log('Altura da Navbar: '+altura_navbar);
+    console.log('Altura da Navbar: ' + altura_navbar);
     document.querySelector('.carrosel').style.marginTop = `${altura_navbar}px`
 }
 
@@ -42,7 +40,7 @@ function sendLink(e) {
 }
 
 // Erros no consumo de API
-function errosApi(e){
+function errosApi(e) {
     console.log(`Erro ao chamar API em ${e}`);
 }
 
@@ -51,6 +49,28 @@ function sortNumeros(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// Limpa os dados armazenados via LocalStorage e recarrega os conteudos da página;
+function refreshApp() {
+    try {
+        localStorage.clear();
+        console.log("✅ LocalStorage limpo");
+        document.getElementById("melhores-placeholder").innerHTML = null;
+        document.getElementById("temporada-placeholder").innerHTML = null;
+        renderContent();
+    } catch (error) {
+        console.log("❌ Erro: " + error);
+    }
+}
+
+// Carrega conteudo da página
+function renderContent(u) {
+    const params = new URLSearchParams(window.location.search);
+    const url = u || params.get("filtro");
+
+    getCarrosel(url);
+    setMelhoresContent(url);
+    setTemporadaContent();
+}
 
 // Consome a API com os melhores animes/mangas e retorna um json
 async function getMelhores(url) {
@@ -59,7 +79,7 @@ async function getMelhores(url) {
 
     // Verifica se não existe a resposta da API na última requisição salva no localStorage
     // Se não existir ele consome a API e salva no localStorage
-    if(!localStorage.getItem(`save_data_melhores_${parametro_api}`)){
+    if (!localStorage.getItem(`save_data_melhores_${parametro_api}`)) {
         try {
             const res = await fetch(`https://api.jikan.moe/v4/top/${parametro_api}`);
             // Caso eu não consiga chamar a API
@@ -68,7 +88,7 @@ async function getMelhores(url) {
                 return;
             }
             const resultado = await res.json();
-            localStorage.setItem(`save_data_melhores_${parametro_api}`,JSON.stringify(resultado));
+            localStorage.setItem(`save_data_melhores_${parametro_api}`, JSON.stringify(resultado));
             console.log(`✅ CONSUMI API PARA OS MELHORES: ${parametro_api}`);
             return resultado;
         } catch (error) {
@@ -86,7 +106,7 @@ async function getTemporada() {
 
     // Verifica se não existe a resposta da API na última requisição salva no localStorage
     // Se não existir ele consome a API e salva no localStorage
-    if(!localStorage.getItem(`save_temporada`)){
+    if (!localStorage.getItem(`save_temporada`)) {
         try {
             const res = await fetch(`https://api.jikan.moe/v4/seasons/now`);
             // Caso eu não consiga chamar a API
@@ -95,7 +115,7 @@ async function getTemporada() {
                 return;
             }
             const resultado = await res.json();
-            localStorage.setItem(`save_temporada`,JSON.stringify(resultado));
+            localStorage.setItem(`save_temporada`, JSON.stringify(resultado));
             console.log(`✅ CONSUMI API PARA OS ANIMES DA TEMPORADA`);
             return resultado;
         } catch (error) {
@@ -107,7 +127,6 @@ async function getTemporada() {
         return resultado;
     }
 }
-
 
 // Carrosel
 
@@ -142,8 +161,8 @@ function setCarrosel() {
     title.innerText = conteudo.title;
     btn.onclick = () => {
         const url = new URL(window.location);
-        url.searchParams.set("id",conteudo.mal_id);
-        window.location.href=url;
+        url.searchParams.set("id", conteudo.mal_id);
+        window.location.href = url;
         // window.location.href = window.location.href + `?id=${conteudo.mal_id}`;
     };
 }
@@ -168,7 +187,8 @@ function dotEvent(dot, index) {
 }
 
 // Conteudo Principal
-async function getMelhoresContent(url) {
+
+async function setMelhoresContent(url) {
     const resultado = await getMelhores(url);
 
     // Placeholder para os melhores conteudos
@@ -191,21 +211,21 @@ async function getMelhoresContent(url) {
     }
 }
 
-async function getTemporadaContent(){
+async function setTemporadaContent() {
     const resultado = await getTemporada();
     // Placeholder para os melhores conteudos
     const placeholder = document.getElementById("temporada-placeholder");
-    
-    for(let i = 0;i < resultado.data.length;i++){
+
+    for (let i = 0; i < resultado.data.length; i++) {
         const card = document.createElement("div");
         const card_img = document.createElement("img");
         const card_header = document.createElement("div");
         card.className = "card";
         card_header.className = "card-header";
-        
+
         card_img.src = resultado.data[i].images.webp.large_image_url;
         card_header.innerHTML = `<p>${resultado.data[i].title}</p>`;
-        
+
         placeholder.appendChild(card);
         card.appendChild(card_img);
         card.appendChild(card_header);

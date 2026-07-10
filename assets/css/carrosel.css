@@ -35,7 +35,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    color: white;
+    color: var(--background);
     z-index: 2;
 }
 
@@ -51,14 +51,14 @@
     gap: 10px;
     padding: 12px 20px;
     border: none;
-    background: #133eff;
-    color: white;
+    background: var(--principalColor);
+    color: var(--background);
     font-size: 1rem;
     cursor: pointer;
     transition: .2s;
 
     &:hover{
-        background: #2b55ff;
+        background: var(--hoverColor);
     }
 }
 
@@ -85,5 +85,5 @@
 }
 
 .dot.active {
-    background: white;
+    background: var(--background);
 }
