@@ -22,10 +22,15 @@ window.onload = () => {
     // Funções que colocaram contéudos na página
     getCarrosel(url);
     getMelhoresContent(url);
+    getTemporadaContent();
 }
 
+let scrolladas = 0;
 window.onscroll = ()=>{
     document.querySelector('.navbar').style.position = 'fixed';
+    const altura_navbar = document.querySelector('.navbar').offsetHeight;
+    console.log('Altura da Navbar: '+altura_navbar);
+    document.querySelector('.carrosel').style.marginTop = `${altura_navbar}px`
 }
 
 // Envia o usuário para as respectivas páginas
@@ -36,28 +41,73 @@ function sendLink(e) {
 
 }
 
+// Erros no consumo de API
+function errosApi(e){
+    console.log(`Erro ao chamar API em ${e}`);
+}
+
 // Sorteia números
 function sortNumeros(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 
 // Consome a API com os melhores animes/mangas e retorna um json
 async function getMelhores(url) {
     // Se a url tiver valor inválido terá valor de anime
     const parametro_api = url || 'anime';
 
-    try {
-        const res = await fetch(`https://api.jikan.moe/v4/top/${parametro_api}`);
-        // Caso eu não consiga chamar a API
-        if (!res.ok) {
-            console.log('Erro ao chamar API');
+    // Verifica se não existe a resposta da API na última requisição salva no localStorage
+    // Se não existir ele consome a API e salva no localStorage
+    if(!localStorage.getItem(`save_data_melhores_${parametro_api}`)){
+        try {
+            const res = await fetch(`https://api.jikan.moe/v4/top/${parametro_api}`);
+            // Caso eu não consiga chamar a API
+            if (!res.ok) {
+                errosApi(getMelhores.name);
+                return;
+            }
+            const resultado = await res.json();
+            localStorage.setItem(`save_data_melhores_${parametro_api}`,JSON.stringify(resultado));
+            console.log(`✅ CONSUMI API PARA OS MELHORES: ${parametro_api}`);
+            return resultado;
+        } catch (error) {
+            console.log(error);
         }
-        const resultado = await res.json();
+    } else {
+        const resultado = JSON.parse(localStorage.getItem(`save_data_melhores_${parametro_api}`));
+        console.log(`❌ NÃO CONSUMI API PARA OS MELHORES: ${parametro_api}`);
         return resultado;
-    } catch (error) {
-        console.log(error);
     }
 }
+
+// Consome a API com os animes da temporada e retorna um json
+async function getTemporada() {
+
+    // Verifica se não existe a resposta da API na última requisição salva no localStorage
+    // Se não existir ele consome a API e salva no localStorage
+    if(!localStorage.getItem(`save_temporada`)){
+        try {
+            const res = await fetch(`https://api.jikan.moe/v4/seasons/now`);
+            // Caso eu não consiga chamar a API
+            if (!res.ok) {
+                errosApi(getTemporada.name);
+                return;
+            }
+            const resultado = await res.json();
+            localStorage.setItem(`save_temporada`,JSON.stringify(resultado));
+            console.log(`✅ CONSUMI API PARA OS ANIMES DA TEMPORADA`);
+            return resultado;
+        } catch (error) {
+            console.log(error);
+        }
+    } else {
+        const resultado = JSON.parse(localStorage.getItem(`save_temporada`));
+        console.log(`❌ NÃO CONSUMI API PARA OS ANIMES DA TEMPORADA`);
+        return resultado;
+    }
+}
+
 
 // Carrosel
 
@@ -128,13 +178,34 @@ async function getMelhoresContent(url) {
     for (let i = 0; i < resultado.data.length; i++) {
         const card = document.createElement("div");
         const card_img = document.createElement("img");
-        const card_header = document.createElement("header");
+        const card_header = document.createElement("div");
         card.className = "card";
         card_header.className = "card-header";
 
         card_img.src = resultado.data[i].images.webp.large_image_url;
-        card_header.textContent = resultado.data[i].title;
+        card_header.innerHTML = `<p>${resultado.data[i].title}</p>`;
 
+        placeholder.appendChild(card);
+        card.appendChild(card_img);
+        card.appendChild(card_header);
+    }
+}
+
+async function getTemporadaContent(){
+    const resultado = await getTemporada();
+    // Placeholder para os melhores conteudos
+    const placeholder = document.getElementById("temporada-placeholder");
+    
+    for(let i = 0;i < resultado.data.length;i++){
+        const card = document.createElement("div");
+        const card_img = document.createElement("img");
+        const card_header = document.createElement("div");
+        card.className = "card";
+        card_header.className = "card-header";
+        
+        card_img.src = resultado.data[i].images.webp.large_image_url;
+        card_header.innerHTML = `<p>${resultado.data[i].title}</p>`;
+        
         placeholder.appendChild(card);
         card.appendChild(card_img);
         card.appendChild(card_header);

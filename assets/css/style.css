@@ -15,194 +15,63 @@
 }
 
 :root {
-    --borderc: #ffffff44;
-    --borderc2: #ececec98;
+    --borderLinks: #ffffff44;
+    --placeholder: #ececec98;
+    --background2: #dbdbdb21;
 }
 
 button {
     cursor: pointer;
 }
 
-main {
+body {
     min-height: 100vh;
     width: 100%;
 }
 
-/* Navbar */
-nav {
-    /* position: fixed; */
+main{
     width: 100%;
-    padding: 1em;
-    max-height: 5em;
-    display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
-    grid-template-areas: "h m p";
-    justify-content: space-between;
-    align-items: center;
-    background: #133eff;
-    color: #fff;
-    z-index: 3;
-}
-
-nav header {
-    grid-area: h;
-}
-
-nav ul {
-    grid-area: m;
-    list-style: none;
     display: flex;
-    border-radius: 2rem;
-    border: 1px solid var(--borderc);
-    overflow: hidden;
 }
 
-nav ul li button {
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px;
-    font-size: 15px;
-    gap: 5px;
-    border: none;
-    color: #fff;
-    background: transparent;
-
-    &:hover {
-        background: #1d47ff;
-        color: #ffffff;
-    }
-}
-
-nav ul li button.active {
-    background: #fff;
-    color: #133eff;
-}
-
-nav div {
-    grid-area: p;
-}
-
-nav div button {
-    font-size: 30px;
-    border: none;
-    background: none;
-    color: #fff;
-}
-
-/* Carrosel */
-.carrosel {
-    position: relative;
-    width: 100%;
-    height: 60vh;
-
-    overflow: hidden;
-}
-
-#img-placeholder {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg,
-            rgba(0, 0, 0, .85) 0%,
-            rgba(0, 0, 0, .45) 35%,
-            rgba(0, 0, 0, .15) 60%,
-            rgba(0, 0, 0, 0) 100%);
-}
-
-#infos-placeholder {
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    transform: translateY(-50%);
-    width: 35%;
+aside{
+    background: var(--background2);
+    border: 1px solid var(--placeholder);
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    color: white;
-    z-index: 2;
-}
-
-#txt-placeholder {
-    font-size: 4rem;
-    line-height: 1;
-}
-
-#btn-placeholder {
-    width: fit-content;
-    display: flex;
+    flex: 0 0 200px;
+    padding: 30px 0px;
     align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    border: none;
-    background: #133eff;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: .2s;
-
-    &:hover{
-        background: #2b55ff;
-    }
 }
 
-.carousel-dots {
-    position: absolute;
-    display: flex;
-    gap: 12px;
-    z-index: 2;
-    top: 95%;
-    left: 50%;
-}
 
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, .4);
-    cursor: pointer;
-    transition: .2s;
-    &:hover{
-        background: rgba(255, 255, 255, .7);
-
-    }
-}
-
-.dot.active {
-    background: white;
-}
 
 .main-content{
-    padding: 50px;
+    padding: 30px;
+    width: 90%;
+    overflow: hidden;
 }
 
-#melhores-placeholder{
-    width: 100%;
-    height: fit-content;
-    overflow: auto;
+#melhores-placeholder,#temporada-placeholder{
     display: flex;
-    gap: 5px;
+    gap: 15px;
+    width: 100%;
+    overflow-y: hidden;
     padding: 10px;
-    
 }
 
 .card{
     display: flex;
-    min-width: 200px;
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    &:hover{
+        scale: 1.1;
+    }
 }
 
 .card img{
-    width: 100%;
+    width: 200px;
     height: 400px;
-    background: var(--borderc2);
+    background: var(--placeholder);
 }

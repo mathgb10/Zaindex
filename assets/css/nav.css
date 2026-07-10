@@ -1,0 +1,62 @@
+/* Navbar */
+nav {
+    /* position: fixed; */
+    width: 100%;
+    padding: 1em;
+    max-height: 5em;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-areas: "h m p";
+    justify-content: space-between;
+    align-items: center;
+    background: #133eff;
+    color: #fff;
+    z-index: 3;
+}
+
+nav header {
+    grid-area: h;
+}
+
+nav ul {
+    grid-area: m;
+    list-style: none;
+    display: flex;
+    border-radius: 2rem;
+    border: 1px solid var(--borderLinks);
+    overflow: hidden;
+}
+
+nav ul li button {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+    font-size: 15px;
+    gap: 5px;
+    border: none;
+    color: #fff;
+    background: transparent;
+
+    &:hover {
+        background: #1d47ff;
+        color: #ffffff;
+    }
+}
+
+nav ul li button.active {
+    background: #fff;
+    color: #133eff;
+}
+
+nav div {
+    grid-area: p;
+}
+
+nav div button {
+    font-size: 30px;
+    border: none;
+    background: none;
+    color: #fff;
+}

@@ -8,59 +8,83 @@
 
     <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/nav.css">
+    <link rel="stylesheet" href="assets/css/carrosel.css">
+
 </head>
 
 <body>
+    <nav class="navbar">
+        <header class="logo">
+            <h1>
+                Zaindex
+            </h1>
+        </header>
+        <ul class="links">
+            <li><button class="btnLinks" data-link="index" onclick="sendLink('index')"><i
+                        class="fa-solid fa-house"></i>Home</button></li>
+            <li><button class="btnLinks" data-link="anime" onclick="sendLink('anime')"><i
+                        class="fa-solid fa-tv"></i>Animes</button></li>
+            <li><button class="btnLinks" data-link="manga" onclick="sendLink('manga')"><i
+                        class="fa-solid fa-book"></i>Mangas</button></li>
+        </ul>
+        <div class="perfil">
+            <button><i class="fa-solid fa-circle-user"></i></button>
+        </div>
+    </nav>
+
+    <section class="carrosel">
+
+        <img id="img-placeholder" src="" alt="">
+
+        <div class="overlay"></div>
+
+        <div id="infos-placeholder">
+            <h1 id="txt-placeholder">Carregando...</h1>
+
+            <button id="btn-placeholder">
+                <i class="fa-solid fa-play"></i>
+                Veja mais
+            </button>
+        </div>
+
+        <div class="carousel-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
     <main>
-        <nav class="navbar">
-            <header class="logo">
-                <h1>
-                    Zaindex
-                </h1>
-            </header>
-            <ul class="links">
-                <li><button class="btnLinks" data-link="index" onclick="sendLink('index')"><i
-                            class="fa-solid fa-house"></i>Home</button></li>
-                <li><button class="btnLinks" data-link="anime" onclick="sendLink('anime')"><i
-                            class="fa-solid fa-tv"></i>Animes</button></li>
-                <li><button class="btnLinks" data-link="manga" onclick="sendLink('manga')"><i
-                            class="fa-solid fa-book"></i>Mangas</button></li>
-            </ul>
-            <div class="perfil">
-                <button><i class="fa-solid fa-circle-user"></i></button>
+        <aside>
+            <div class="searchbar">
+                <h3>Pesquisa e Filtros:</h3>
+                <form action="">
+                    <input type="text" name="pesquisa" id="pesquisa">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
             </div>
-        </nav>
-
-        <section class="carrosel">
-
-            <img id="img-placeholder" src="" alt="">
-
-            <div class="overlay"></div>
-
-            <div id="infos-placeholder">
-                <h1 id="txt-placeholder">Carregando...</h1>
-
-                <button id="btn-placeholder">
-                    <i class="fa-solid fa-play"></i>
-                    Veja mais
-                </button>
+            <div class="filtros">
+    
             </div>
-
-            <div class="carousel-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-        </section>
-
+        </aside>
+    
         <section class="main-content">
             <div class="content">
                 <header>
                     <h2>Os melhores 25:</h2>
-                </header>                
+                </header>
                 <div id="melhores-placeholder">
-                    
+    
+                </div>
+            </div>
+            <div class="content">
+                <header>
+                    <h2>Animes da Temporada:</h2>
+                </header>
+                <div id="temporada-placeholder">
+    
                 </div>
             </div>
         </section>
