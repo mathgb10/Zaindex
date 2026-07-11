@@ -1,4 +1,5 @@
 
+// Se a página for scrollada, a navbar fica fixa, e o carrosel vai dar um margin top
 let scrolladas = 0;
 window.onscroll = () => {
     document.querySelector('.navbar').style.position = 'fixed';
@@ -11,7 +12,6 @@ function sendLink(e) {
     const onde = e;
     // Se o parametro tenha valor 'index' então levo o usuário a origem, se não adiciono um parametro ?filtro=
     onde == 'index' ? window.location.href = origin : window.location.href = `?filtro=${onde}`;
-
 }
 
 // Sorteia números
@@ -71,21 +71,28 @@ function dotEvent(dot, index) {
     dot.classList.add('active');
 }
 
-function search(e) {
-    const p = document.getElementById("pesquisa");
-    p.value = e;
-    toggleClearButton();
-}
+// Pesquisa
 
+// Caso alguém realize uma pesquisa chama a função que exibe o btn que limpa pesquisa
 const pesquisa = document.getElementById("pesquisa");
 pesquisa.addEventListener("input", toggleClearButton);
 
+// Caso tenha algo na ?pesquisa o input vai ficar com esse valor
+// Chama também a função que exibe o btn que limpa pesquisa
+function search(e) {
+    pesquisa.value = e;
+    toggleClearButton();
+}
+
+// Função que exibe btn que limpa pesquisa
+// Caso exista uma pesquisa ele aparece se não display = none;
 function toggleClearButton() {
     const btn = document.getElementById("limpar-pesquisa");
-
     btn.style.display = pesquisa.value.trim() ? "block" : "none";
 }
 
+// Ao clicar no btn de limpar, essa função é chamada
+// Ele zerá o input de pesquisa e limpa a pesquisa na URL
 function clearSearch() {
     pesquisa.value = "";
     toggleClearButton();

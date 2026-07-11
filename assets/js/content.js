@@ -1,6 +1,6 @@
 // Conteudo Principal
 
-// Carrega no Carrosel o conteudo usando o slide atual. 
+// Carrega no carrosel o conteudo usando o slide atual. 
 function setCarrosel() {
     const img = document.getElementById('img-placeholder');
     const btn = document.getElementById('btn-placeholder');
@@ -18,6 +18,9 @@ function setCarrosel() {
     };
 }
 
+// Cria e adiciona conteúdo na página
+
+// Cards de melhores animes/mangas
 function setMelhoresContent(resultado) {
     // Placeholder para os melhores conteudos
     const placeholder = document.getElementById("melhores-placeholder");
@@ -28,15 +31,18 @@ function setMelhoresContent(resultado) {
     }
 }
 
+// Cards de animes da temporada
 function setTemporadaContent(resultado) {
     // Placeholder para os melhores conteudos
     const placeholder = document.getElementById("temporada-placeholder");
-
+    
+    // Será adicionado a página um card com a imagem e titulo das obras
     for (let i = 0; i < resultado.data.length; i++) {
         placeholder.appendChild(createCards(resultado.data[i]));
     }
 }
 
+// Gêneros de animes/mangas na aside 
 function setGenerosFiltro(resultado) {
     // Placeholder para os melhores conteudos
     const placeholder = document.getElementById("filtros-placeholder");

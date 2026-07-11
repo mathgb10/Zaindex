@@ -34,7 +34,6 @@ async function getMelhores(url) {
 
 // Consome a API com os animes da temporada e retorna um json
 async function getTemporada() {
-
     // Verifica se não existe a resposta da API na última requisição salva no localStorage
     // Se não existir ele consome a API e salva no localStorage
     if (!localStorage.getItem(`save_temporada`)) {
@@ -59,18 +58,23 @@ async function getTemporada() {
     }
 }
 
+// Consome a API com os gêneros de animes/mangas
 async function getGeneros(url) {
+    // Se a url tiver valor inválido terá valor de anime
     const parametros_api = url || 'anime';
 
-    if(!localStorage.getItem(`save_generos_${parametros_api}`)){
+    // Verifica se não existe a resposta da API na última requisição salva no localStorage
+    // Se não existir ele consome a API e salva no localStorage
+    if (!localStorage.getItem(`save_generos_${parametros_api}`)) {
         try {
             const res = await fetch(`https://api.jikan.moe/v4/genres/${parametros_api}`);
-            if(!res.ok){
+            // Caso eu não consiga chamar API
+            if (!res.ok) {
                 errosApi(getGeneros.name);
                 return;
             }
             const resultado = await res.json();
-            localStorage.setItem(`save_generos_${parametros_api}`,JSON.stringify(resultado));
+            localStorage.setItem(`save_generos_${parametros_api}`, JSON.stringify(resultado));
             console.log(`✅ CONSUMI API PARA OS GENEROS DOS: ${parametros_api}`);
             return resultado;
         } catch (error) {

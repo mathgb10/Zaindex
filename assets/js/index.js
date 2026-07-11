@@ -18,6 +18,7 @@ window.onload = () => {
         }
     }
 
+    // Funções que coloca o conteúdo pesquisa na URL no input de pesquisa;
     search(params.get("pesquisa"));
 
     // Funções que colocaram contéudos na página
@@ -26,10 +27,12 @@ window.onload = () => {
 
 // Carrega conteudo da página
 async function renderContent(url) {
+    // Chama e armazena o retorno das funções que consomem a API;
     const melhoresAnimes = await getMelhores(url);
     const generos = await getGeneros(url);
     const temporadaAnimes = await getTemporada();
 
+    // Funções para carregar conteúdos na página
     setSlides(melhoresAnimes);
     setMelhoresContent(melhoresAnimes);
     setTemporadaContent(temporadaAnimes);

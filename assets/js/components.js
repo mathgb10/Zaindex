@@ -1,3 +1,4 @@
+// Cria card e retorna o mesmo, sempre se baseando no item informado no parâmetro;
 function createCards(item) {
     const card = document.createElement("div");
     const card_img = document.createElement("img");
