@@ -2,7 +2,7 @@
 window.onload = () => {
     // Coleta os parametros na URL ou seja o ?filtro
     const params = new URLSearchParams(window.location.search);
-    const url = params.get("filtro");
+    var url = params.get("filtro");
     
     const btnsLinks = document.querySelectorAll(".btnLinks");
     
@@ -21,16 +21,24 @@ window.onload = () => {
     // Funções que coloca o conteúdo pesquisa na URL no input de pesquisa;
     search(params.get("pesquisa"));
 
+    var u;
+    if (url == null){
+        u = "anime";
+    } else {
+        u = url;
+    }
+
     // Funções que colocaram contéudos na página
-    renderContent(url);
+    renderContent(u);
 }
 
 // Carrega conteudo da página
 async function renderContent(url) {
+
     // Chama e armazena o retorno das funções que consomem a API;
-    const melhoresAnimes = await getMelhores(url);
-    const generos = await getGeneros(url);
-    const temporadaAnimes = await getTemporada();
+    const melhoresAnimes = await fetchAPI(url,`/top/${url}`);
+    const generos = await fetchAPI(url,`/genres/${url}`);
+    const temporadaAnimes = await fetchAPI(url,"/seasons/now");
 
     // Funções para carregar conteúdos na página
     setSlides(melhoresAnimes);

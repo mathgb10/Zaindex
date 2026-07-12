@@ -11,7 +11,7 @@ window.onscroll = () => {
 function sendLink(e) {
     const onde = e;
     // Se o parametro tenha valor 'index' então levo o usuário a origem, se não adiciono um parametro ?filtro=
-    onde == 'index' ? window.location.href = origin : window.location.href = `?filtro=${onde}`;
+    onde == 'index' ? window.location.href = window.location.href="index.html" : window.location.href = `?filtro=${onde}`;
 }
 
 // Sorteia números
