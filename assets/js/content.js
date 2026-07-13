@@ -64,6 +64,8 @@ function setGenerosFiltro(resultado) {
         placeholder.appendChild(div);
         div.appendChild(input);
         div.appendChild(span);
+        // Depois da div de número 30, elas passaram a ter a classe hidden
+        // Afins de não exibir muitas de uma vez
         if(i >= 30){
             div.classList.add("hidden");
         }
