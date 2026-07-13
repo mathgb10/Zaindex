@@ -70,6 +70,12 @@ aside div form button {
     }
 }
 
+.filtros{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 #filtros-placeholder{
     display: flex;
     width: 100%;
@@ -81,9 +87,24 @@ aside div form button {
     display: flex;
     gap: 10px;
     align-items: center;
-
 }
 
 .div-input input{
     display: flex;
+}
+
+.hidden{
+    display: none;
+}
+
+#btn-mostrar{
+    width: 100%;
+    background: var(--principalColor);
+    color: var(--background);
+    border: none;
+    font-size: 16px;
+    padding: 10px;
+    &:hover{
+        background: var(--hoverColor);
+    }
 }

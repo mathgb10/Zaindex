@@ -64,5 +64,8 @@ function setGenerosFiltro(resultado) {
         placeholder.appendChild(div);
         div.appendChild(input);
         div.appendChild(span);
+        if(i >= 30){
+            div.classList.add("hidden");
+        }
     }
 }

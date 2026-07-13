@@ -100,3 +100,19 @@ function clearSearch() {
     url.searchParams.delete("pesquisa");
     window.history.replaceState({},'',url)
 }
+
+function showMore() {
+    const divEscondidas = document.querySelectorAll(".hidden");
+    const divs = document.querySelectorAll(".div-input");
+    console.log(divs);
+    if(divEscondidas.length > 0){
+        divEscondidas.forEach(e => {
+            e.classList.remove("hidden");
+        });
+    } else {
+        for(let i = 30; i < divs.length; i++){
+            divs[i].classList.add("hidden");
+        }
+    }
+    document.getElementById("btn-mostrar").textContent="Mostrar Menos"
+}

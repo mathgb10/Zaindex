@@ -66,23 +66,29 @@
                 <h3>Pesquisa e Filtros:</h3>
                 <form action="">
                     <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquise aqui...">
-                    <button type="button" id="limpar-pesquisa" onclick="clearSearch()"><i class="fa-solid fa-x"></i></button>
+                    <button type="button" id="limpar-pesquisa" onclick="clearSearch()"><i
+                            class="fa-solid fa-x"></i></button>
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
                 <button onclick="refreshApp()" id="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i></button>
             </div>
-            <div class="filtros" id="filtros-placeholder">
-    
+            <div class="filtros">
+                <div id="filtros-placeholder">
+
+                </div>
+                <div>
+                    <button id="btn-mostrar" onclick="showMore()">Mostrar mais</button>
+                </div>
             </div>
         </aside>
-    
+
         <section class="main-content">
             <div class="content">
                 <header>
                     <h2>Os melhores 25:</h2>
                 </header>
                 <div id="melhores-placeholder">
-    
+
                 </div>
             </div>
             <div class="content">
@@ -90,7 +96,7 @@
                     <h2>Animes da Temporada:</h2>
                 </header>
                 <div id="temporada-placeholder">
-    
+
                 </div>
             </div>
         </section>
