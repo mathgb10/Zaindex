@@ -1,9 +1,7 @@
 // Ao carregar a página
 window.onload = () => {
     // Coleta os parametros na URL ou seja o ?filtro
-    const params = new URLSearchParams(window.location.search);
-    var url = params.get("filtro");
-    
+    const url = getUrl();
     const btnsLinks = document.querySelectorAll(".btnLinks");
     
     // Vai percorrer os btns e caso o parametro informado tenha valor igual ao data "link" ele ficara com a classe active
@@ -19,21 +17,14 @@ window.onload = () => {
     }
 
     // Funções que coloca o conteúdo pesquisa na URL no input de pesquisa;
-    search(params.get("pesquisa"));
-
-    var u;
-    if (url == null){
-        u = "anime";
-    } else {
-        u = url;
-    }
-
+    search(getSearch());
     // Funções que colocaram contéudos na página
-    renderContent(u);
+    renderContent();
 }
 
 // Carrega conteudo da página
-async function renderContent(url) {
+async function renderContent() {
+    const url = getUrl() || "anime";
 
     // Chama e armazena o retorno das funções que consomem a API;
     const melhoresAnimes = await fetchAPI(url,`/top/${url}`);

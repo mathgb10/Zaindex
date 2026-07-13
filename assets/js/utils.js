@@ -11,7 +11,7 @@ window.onscroll = () => {
 function sendLink(e) {
     const onde = e;
     // Se o parametro tenha valor 'index' então levo o usuário a origem, se não adiciono um parametro ?filtro=
-    onde == 'index' ? window.location.href = window.location.href="index.html" : window.location.href = `?filtro=${onde}`;
+    onde == 'index' ? window.location.href = window.location.href = "index.html" : window.location.href = `?filtro=${onde}`;
 }
 
 // Sorteia números
@@ -98,7 +98,7 @@ function clearSearch() {
     toggleClearButton();
     const url = new URL(window.location);
     url.searchParams.delete("pesquisa");
-    window.history.replaceState({},'',url)
+    window.history.replaceState({}, '', url)
 }
 
 // É executada quando o btn de Mostrar Mais ou Mostrar Menos é clicado
@@ -109,17 +109,30 @@ function showMore() {
 
     // Se existir divs com classe hidden eu percorro todas removo a classe
     // depois muda o texto do btn
-    if(divEscondidas.length > 0){
+    if (divEscondidas.length > 0) {
         divEscondidas.forEach(e => {
             e.classList.remove("hidden");
         });
-        document.getElementById("btn-mostrar").textContent="Mostrar Menos"
+        document.getElementById("btn-mostrar").textContent = "Mostrar Menos"
         // Caso contrário (o btn for clicado e não existir divs com classe hidden) ele vai adicionar a classe
         // apartir do elemento de número 30, depois muda o texto do btn
     } else {
-        for(let i = 30; i < divs.length; i++){
+        for (let i = 30; i < divs.length; i++) {
             divs[i].classList.add("hidden");
         }
-        document.getElementById("btn-mostrar").textContent="Mostrar Mais"
+        document.getElementById("btn-mostrar").textContent = "Mostrar Mais"
     }
+}
+
+function getUrl() {
+    // Coleta os parametros na URL ou seja o ?filtro
+    const params = new URLSearchParams(window.location.search);
+    var url = params.get("filtro");
+    return url;
+}
+
+function getSearch() {
+    const params = new URLSearchParams(window.location.search);
+    const pesquisa = params.get("pesquisa");
+    return pesquisa;
 }

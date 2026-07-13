@@ -5,7 +5,6 @@ function errosApi(e) {
 
 async function fetchAPI(url, endpoint) {
     const URL = `https://api.jikan.moe/v4`;
-    const parametro_api = url || "anime";
 
     // Verifica se não existe a resposta da API na última requisição salva no localStorage
     // Se não existir ele consome a API e salva no localStorage
@@ -18,6 +17,8 @@ async function fetchAPI(url, endpoint) {
                 return;
             }
             const resultado = await res.json();
+            const validade = Date.now()+(24*60*60*1000);
+            resultado.validade = validade;
             localStorage.setItem(`${endpoint}`, JSON.stringify(resultado));
             console.log(`✅ CONSUMI API PARA OS MELHORES: ${endpoint}`);
             return resultado;
