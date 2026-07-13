@@ -1,0 +1,26 @@
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li button {
+        font-size: 12px;
+    }
+
+    #txt-placeholder {
+        font-size: 2rem;
+        line-height: 1;
+    }
+
+    aside {
+        margin-top: 20px;
+        width: 90%;
+    }
+
+    .card img {
+        width: 150px;
+        height: 300px;
+        background: var(--placeholder);
+    }
+}
