@@ -101,6 +101,21 @@ function clearSearch() {
     window.history.replaceState({}, '', url)
 }
 
+
+// Se a largura da tela for maior ou igual 768px, as divs superiores a de número 30, passam a ter a classe hidden
+// Afim de não exibir muitos gêneros de uma só vez
+// Se for não for maior ou igual 768 adiciona a classe hidden nas divs superiores a de número 10
+function hideGeneros() {
+    const div = document.querySelectorAll(".div-input");
+    const limite = window.innerWidth >= 768 ? 30 : 10;
+
+    for (let i = 0; i < div.length; i++) {
+        if (i >= limite) {
+            div[i].classList.add("hidden");
+        }
+    }
+}
+
 // É executada quando o btn de Mostrar Mais ou Mostrar Menos é clicado
 // Dependendo da situação ele vai exibir ou esconder alguns filtros
 function showMore() {
@@ -117,7 +132,8 @@ function showMore() {
         // Caso contrário (o btn for clicado e não existir divs com classe hidden) ele vai adicionar a classe
         // apartir do elemento de número 30, depois muda o texto do btn
     } else {
-        for (let i = 30; i < divs.length; i++) {
+        const limite = window.innerWidth >= 768 ? 30 : 10;
+        for (let i = limite; i < divs.length; i++) {
             divs[i].classList.add("hidden");
         }
         document.getElementById("btn-mostrar").textContent = "Mostrar Mais"
@@ -125,7 +141,7 @@ function showMore() {
 }
 
 // Coleta o parametro na URL e retorna o valor desse parametro
-function getUrl(parametro){
+function getUrl(parametro) {
     const params = new URLSearchParams(window.location.search);
     var url = params.get(parametro);
     return url;

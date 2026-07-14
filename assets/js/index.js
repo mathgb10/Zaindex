@@ -35,5 +35,5 @@ async function renderContent() {
     setSlides(melhoresAnimes);
     setCards(melhoresAnimes,"melhores-placeholder");
     setCards(temporadaAnimes,"temporada-placeholder");
-    setGenerosFiltro(generos);
+    setGeneros(generos);
 }
