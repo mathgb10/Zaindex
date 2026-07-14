@@ -124,15 +124,9 @@ function showMore() {
     }
 }
 
-function getUrl() {
-    // Coleta os parametros na URL ou seja o ?filtro
+// Coleta o parametro na URL e retorna o valor desse parametro
+function getUrl(parametro){
     const params = new URLSearchParams(window.location.search);
-    var url = params.get("filtro");
+    var url = params.get(parametro);
     return url;
-}
-
-function getSearch() {
-    const params = new URLSearchParams(window.location.search);
-    const pesquisa = params.get("pesquisa");
-    return pesquisa;
 }

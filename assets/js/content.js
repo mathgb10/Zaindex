@@ -20,25 +20,11 @@ function setCarrosel() {
 
 // Cria e adiciona conteúdo na página
 
-// Cards de melhores animes/mangas
-function setMelhoresContent(resultado) {
-    // Placeholder para os melhores conteudos
-    const placeholder = document.getElementById("melhores-placeholder");
-
-    // Será adicionado a página um card com a imagem e titulo das obras
+// Cards de melhores animes/mangas e etc.
+function setCards(resultado, placeholder) {
+    const place = document.getElementById(placeholder);
     for (let i = 0; i < resultado.data.length; i++) {
-        placeholder.appendChild(createCards(resultado.data[i]));
-    }
-}
-
-// Cards de animes da temporada
-function setTemporadaContent(resultado) {
-    // Placeholder para os melhores conteudos
-    const placeholder = document.getElementById("temporada-placeholder");
-    
-    // Será adicionado a página um card com a imagem e titulo das obras
-    for (let i = 0; i < resultado.data.length; i++) {
-        placeholder.appendChild(createCards(resultado.data[i]));
+        place.appendChild(createCards(resultado.data[i]));
     }
 }
 
@@ -68,12 +54,12 @@ function setGenerosFiltro(resultado) {
         // Se a largura da tela for maior ou igual 768px, as divs superiores a de número 30, passam a ter a classe hidden
         // Afim de não exibir muitos gêneros de uma só vez
         // Se for não for maior ou igual 768 adiciona a classe hidden nas divs superiores a de número 10
-        if(window.innerWidth >= 768){
-            if(i >= 30){
+        if (window.innerWidth >= 768) {
+            if (i >= 30) {
                 div.classList.add("hidden");
             }
         } else {
-            if(i >= 10){
+            if (i >= 10) {
                 div.classList.add("hidden");
             }
         }
