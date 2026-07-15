@@ -3,7 +3,7 @@ function errosApi(e) {
     console.log(`Erro ao chamar API em ${e}`);
 }
 
-async function fetchAPI(url, endpoint) {
+async function fetchAPI(endpoint) {
     const URL = `https://api.jikan.moe/v4`;
 
     // Verifica se não existe a resposta da API na última requisição salva no localStorage
@@ -11,6 +11,7 @@ async function fetchAPI(url, endpoint) {
     if (!localStorage.getItem(`${endpoint}`)) {
         try {
             const res = await fetch(`${URL}${endpoint}`);
+            console.log(`${URL}${endpoint}`);
             // Caso eu não consiga chamar a API
             if (!res.ok) {
                 errosApi(endpoint);

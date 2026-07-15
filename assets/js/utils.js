@@ -77,11 +77,19 @@ function dotEvent(dot, index) {
 const pesquisa = document.getElementById("pesquisa");
 pesquisa.addEventListener("input", toggleClearButton);
 
+function makeSearch(){
+    const url = new URL(window.location);
+    url.searchParams.set("pesquisa",pesquisa.value);
+    window.history.replaceState({}, '', url);
+    renderContent();
+}
+
 // Caso tenha algo na ?pesquisa o input vai ficar com esse valor
 // Chama também a função que exibe o btn que limpa pesquisa
 function search(e) {
     pesquisa.value = e;
     toggleClearButton();
+    makeSearch();
 }
 
 // Função que exibe btn que limpa pesquisa
