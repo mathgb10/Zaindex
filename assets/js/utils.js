@@ -1,10 +1,33 @@
+const placeholders = [
+    "melhores-placeholder",
+    "temporada-placeholder",
+    "filtros-placeholder",
+]
 
-// Se a página for scrollada, a navbar fica fixa, e o carrosel vai dar um margin top
+function clearContent(){
+    placeholders.forEach((e)=>{
+        document.getElementById(e).innerHTML = "";
+    })
+}
+
+// Se a página for scrollada, a navbar fica fixa, e o carrosel vai dar um margin top caso ele esteja com a classe hidden
+// a margin fica no main
 let scrolladas = 0;
-window.onscroll = () => {
-    document.querySelector('.navbar').style.position = 'fixed';
-    const altura_navbar = document.querySelector('.navbar').offsetHeight;
-    document.querySelector('.carrosel').style.marginTop = `${altura_navbar}px`
+if(scrolladas == 0){
+    window.onscroll = () => {
+            const carrosel = document.querySelector('.carrosel');
+            const main = document.getElementById("main");
+            const nav = document.querySelector('.navbar');
+            
+            nav.style.position = 'fixed';
+            const altura_navbar = nav.offsetHeight;
+
+            if(carrosel.classList.contains("hidden")){
+                main.style.marginTop = `${altura_navbar}px`;
+            } else {
+                carrosel.style.marginTop = `${altura_navbar}px`;
+            }
+    }
 }
 
 // Envia o usuário para as respectivas páginas
@@ -24,8 +47,7 @@ function refreshApp() {
     try {
         localStorage.clear();
         console.log("✅ LocalStorage limpo");
-        document.getElementById("melhores-placeholder").innerHTML = null;
-        document.getElementById("temporada-placeholder").innerHTML = null;
+        clearContent();
         renderContent();
     } catch (error) {
         console.log("❌ Erro: " + error);
@@ -77,9 +99,9 @@ function dotEvent(dot, index) {
 const pesquisa = document.getElementById("pesquisa");
 pesquisa.addEventListener("input", toggleClearButton);
 
-function makeSearch(){
+function makeSearch() {
     const url = new URL(window.location);
-    url.searchParams.set("pesquisa",pesquisa.value);
+    url.searchParams.set("pesquisa", pesquisa.value);
     window.history.replaceState({}, '', url);
     renderContent();
 }
@@ -107,8 +129,8 @@ function clearSearch() {
     const url = new URL(window.location);
     url.searchParams.delete("pesquisa");
     window.history.replaceState({}, '', url)
+    renderContent();
 }
-
 
 // Se a largura da tela for maior ou igual 768px, as divs superiores a de número 30, passam a ter a classe hidden
 // Afim de não exibir muitos gêneros de uma só vez
