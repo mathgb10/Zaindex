@@ -11,7 +11,6 @@ async function fetchAPI(endpoint) {
     if (!localStorage.getItem(`${endpoint}`)) {
         try {
             const res = await fetch(`${URL}${endpoint}`);
-            console.log(`${URL}${endpoint}`);
             // Caso eu não consiga chamar a API
             if (!res.ok) {
                 errosApi(endpoint);

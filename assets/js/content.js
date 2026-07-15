@@ -31,7 +31,7 @@ function setCards(resultado, placeholder) {
 // Gêneros de animes/mangas na aside 
 function setGeneros(resultado) {
     // Placeholder para os melhores conteudos
-    const placeholder = document.getElementById("filtros-placeholder");
+    const placeholder = document.getElementById(placeholders[2]);
 
     // Será adicionado a aside os gêneros 
     for (let i = 0; i < resultado.data.length; i++) {

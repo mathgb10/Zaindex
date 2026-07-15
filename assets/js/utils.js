@@ -2,33 +2,49 @@ const placeholders = [
     "melhores-placeholder",
     "temporada-placeholder",
     "filtros-placeholder",
+    "pesquisa-placeholder",
 ]
 
-function clearContent(){
-    placeholders.forEach((e)=>{
+function clearContent() {
+    placeholders.forEach((e) => {
         document.getElementById(e).innerHTML = "";
     })
 }
 
+function hiddenDefaulContent(hidden) {
+    const content = document.querySelectorAll(".content");
+    const carrosel = document.querySelector(".carrosel");
+    if (hidden == "no") {
+        content.forEach((e) => {
+            e.classList.remove("hidden");
+        })
+        document.querySelector(".carrosel").classList.remove("hidden");
+        document.querySelector(".content-search").classList.add("hidden");
+    } else {
+        content.forEach((e) => {
+            e.classList.add("hidden");
+        })
+        document.querySelector(".carrosel").classList.add("hidden");
+        document.querySelector(".content-search").classList.remove("hidden");
+    }
+}
+
 // Se a página for scrollada, a navbar fica fixa, e o carrosel vai dar um margin top caso ele esteja com a classe hidden
 // a margin fica no main
-let scrolladas = 0;
-if(scrolladas == 0){
-    window.onscroll = () => {
-            const carrosel = document.querySelector('.carrosel');
-            const main = document.getElementById("main");
-            const nav = document.querySelector('.navbar');
-            
-            nav.style.position = 'fixed';
-            const altura_navbar = nav.offsetHeight;
 
-            if(carrosel.classList.contains("hidden")){
-                main.style.marginTop = `${altura_navbar}px`;
-            } else {
-                carrosel.style.marginTop = `${altura_navbar}px`;
-            }
+window.onscroll = () => {
+    const carrosel = document.querySelector('.carrosel');
+    const main = document.getElementById("main");
+    const nav = document.querySelector('.navbar');
+
+    nav.style.position = 'fixed';
+    const altura_navbar = nav.offsetHeight;
+
+    if (carrosel.classList.contains("hidden")) {
+        main.style.marginTop = `${altura_navbar}px`;
+    } else {
+        carrosel.style.marginTop = `${altura_navbar}px`;
     }
-    scrolladas += 1;
 }
 
 // Envia o usuário para as respectivas páginas
@@ -103,7 +119,7 @@ pesquisa.addEventListener("input", toggleClearButton);
 function makeSearch() {
     const url = new URL(window.location);
     url.searchParams.set("pesquisa", pesquisa.value);
-    window.history.replaceState({}, '', url);
+    window.history.replaceState({}, "", url);
     renderContent();
 }
 
@@ -112,7 +128,6 @@ function makeSearch() {
 function search(e) {
     pesquisa.value = e;
     toggleClearButton();
-    makeSearch();
 }
 
 // Função que exibe btn que limpa pesquisa

@@ -1,5 +1,6 @@
 aside {
     background: var(--background2);
+    min-height: 100vh;
     border: 1px solid var(--placeholder);
     display: flex;
     flex-direction: column;
@@ -91,10 +92,6 @@ aside div form button {
 
 .div-input input{
     display: flex;
-}
-
-.hidden{
-    display: none;
 }
 
 #btn-mostrar{

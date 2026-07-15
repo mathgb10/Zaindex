@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="assets/css/aside.css">
     <link rel="stylesheet" href="assets/css/content.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/global.css">
 
 </head>
 
@@ -61,15 +62,15 @@
         </div>
     </section>
 
-    <main>
+    <main id="main">
         <aside>
             <div class="searchbar">
                 <h3>Pesquisa e Filtros:</h3>
-                <form action="">
+                <form>
                     <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquise aqui...">
                     <button type="button" id="limpar-pesquisa" onclick="clearSearch()"><i
                             class="fa-solid fa-x"></i></button>
-                    <button type="button" id="search-btn" onclick="makeSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="button" id="search-btn" onclick="makeSearch(this)"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
                 <button onclick="refreshApp()" id="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i></button>
             </div>
@@ -84,6 +85,17 @@
         </aside>
 
         <section class="main-content">
+
+            <div class="content-search">
+                <header>
+                    <h2 id="titulo-pesquisa"></h2>
+                </header>
+                <div id="pesquisa-placeholder" class="wrap">
+
+                </div>
+            </div>
+
+            <!-- Os melhores -->
             <div class="content">
                 <header>
                     <h2 id="titulo"><i class="fa-solid fa-crown"></i> Os melhores 25:</h2>
@@ -92,6 +104,8 @@
 
                 </div>
             </div>
+            
+            <!-- Animes da temporada -->
             <div class="content">
                 <header>
                     <h2><i class="fa-solid fa-alarm-clock"></i> Animes da Temporada:</h2>

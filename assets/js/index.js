@@ -26,21 +26,36 @@ window.onload = () => {
 async function renderContent() {
     const url = getUrl('filtro') || "anime";
     const pesquisa = getUrl('pesquisa');
+
+    renderFilters(url);
+    
+    if (pesquisa) {
+        renderSearch(url, pesquisa);
+        return;
+    }
+    
+    hiddenDefaulContent("no");
     
     // Chama e armazena o retorno das funções que consomem a API;
     const melhoresAnimes = await fetchAPI(`/top/${url}`);
-    const generos = await fetchAPI(`/genres/${url}`);
     const temporadaAnimes = await fetchAPI("/seasons/now");
-
-    if (!pesquisa) {
-        setCards(melhoresAnimes, "melhores-placeholder");
-        setCards(temporadaAnimes, "temporada-placeholder");
-    } else {
-        const conteudoPesquisado = await fetchAPI(`/${url}?q='${pesquisa}'`);
-        setCards(conteudoPesquisado, "melhores-placeholder");
-    }
-
+    
     // Funções para carregar conteúdos na página
+    setCards(melhoresAnimes, placeholders[0]);
+    setCards(temporadaAnimes, placeholders[1]);
     setSlides(melhoresAnimes);
+    
+}
+
+async function renderFilters(url) {
+    const generos = await fetchAPI(`/genres/${url}`);
     setGeneros(generos);
+}
+
+async function renderSearch(url, pesquisa) {
+    const conteudoPesquisado = await fetchAPI(`/${url}?q=${pesquisa}`);
+    hiddenDefaulContent("yes");
+
+    document.getElementById("titulo-pesquisa").textContent = pesquisa;
+    setCards(conteudoPesquisado, placeholders[3]);
 }
