@@ -28,6 +28,7 @@ if(scrolladas == 0){
                 carrosel.style.marginTop = `${altura_navbar}px`;
             }
     }
+    scrolladas += 1;
 }
 
 // Envia o usuário para as respectivas páginas
