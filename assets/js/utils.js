@@ -20,6 +20,7 @@ function hiddenDefaulContent(hidden) {
         })
         document.querySelector(".carrosel").classList.remove("hidden");
         document.querySelector(".content-search").classList.add("hidden");
+        document.querySelector(".main-content").style.marginTop = "0px";
     } else {
         content.forEach((e) => {
             e.classList.add("hidden");
@@ -43,15 +44,22 @@ window.onscroll = () => {
     if (carrosel.classList.contains("hidden")) {
         main.style.marginTop = `${altura_navbar}px`;
     } else {
+        main.style.marginTop = `0px`;
         carrosel.style.marginTop = `${altura_navbar}px`;
     }
 }
 
 // Envia o usuário para as respectivas páginas
-function sendLink(e) {
-    const onde = e;
-    // Se o parametro tenha valor 'index' então levo o usuário a origem, se não adiciono um parametro ?filtro=
-    onde == 'index' ? window.location.href = window.location.href = "index.html" : window.location.href = `?filtro=${onde}`;
+function sendLink(filtro){
+    const url = new URL(window.location);
+
+    if(filtro === "index"){
+        url.searchParams.delete("filtro");
+    }else{
+        url.searchParams.set("filtro", filtro);
+    }
+
+    window.location.href = url;
 }
 
 // Sorteia números
@@ -116,10 +124,12 @@ function dotEvent(dot, index) {
 const pesquisa = document.getElementById("pesquisa");
 pesquisa.addEventListener("input", toggleClearButton);
 
-function makeSearch() {
+function makeSearch(e) {
+    e.preventDefault();
     const url = new URL(window.location);
     url.searchParams.set("pesquisa", pesquisa.value);
     window.history.replaceState({}, "", url);
+    console.log(url.toString());
     renderContent();
 }
 

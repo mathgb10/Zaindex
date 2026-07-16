@@ -66,11 +66,11 @@
         <aside>
             <div class="searchbar">
                 <h3>Pesquisa e Filtros:</h3>
-                <form>
+                <form onsubmit="makeSearch(event)" id="form-pesquisa">
                     <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquise aqui...">
                     <button type="button" id="limpar-pesquisa" onclick="clearSearch()"><i
                             class="fa-solid fa-x"></i></button>
-                    <button type="button" id="search-btn" onclick="makeSearch(this)"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="submit" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
                 <button onclick="refreshApp()" id="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i></button>
             </div>
