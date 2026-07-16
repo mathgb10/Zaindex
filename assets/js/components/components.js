@@ -13,6 +13,7 @@ function createCards(item) {
     return card;
 }
 
+// Cria uma div com input radio e uma label informando genero  e retorna as mesmas
 function createGeneros(item) {
     const div = document.createElement("div");
     const input = document.createElement("input");

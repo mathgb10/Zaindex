@@ -77,7 +77,7 @@ aside div form button {
     gap: 15px;
 }
 
-#filtros-placeholder{
+#generos-placeholder{
     display: flex;
     width: 100%;
     flex-wrap: wrap;

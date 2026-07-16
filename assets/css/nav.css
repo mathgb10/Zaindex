@@ -1,6 +1,6 @@
 /* Navbar */
 nav {
-    /* position: fixed; */
+    position: fixed;
     width: 100%;
     padding: 1em;
     max-height: 5em;

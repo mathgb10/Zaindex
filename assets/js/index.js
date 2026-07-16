@@ -1,8 +1,8 @@
-// Ao carregar a página
+// Marca o btn ativo, recupera a pesquisa na função search() e carrega o conteudo inicial
 window.onload = () => {
     // Coleta os parametros na URL ou seja o ?filtro
     const url = getUrl('filtro');
-    const btnsLinks = document.querySelectorAll(".btnLinks");
+    const btnsLinks = DOM.btnsLinks;
 
     // Vai percorrer os btns e caso o parametro informado tenha valor igual ao data "link" ele ficara com a classe active
     for (let i = 0; i < btnsLinks.length; i++) {
@@ -16,49 +16,55 @@ window.onload = () => {
         }
     }
 
-    // Funções que coloca o conteúdo pesquisa na URL no input de pesquisa;
     search(getUrl('pesquisa'));
-    // Funções que colocaram contéudos na página
     renderContent();
 }
 
-// Carrega conteudo da página
+// Carrega conteudo da página o conteudo principal
 async function renderContent() {
     const url = getUrl('filtro') || "anime";
     const pesquisa = getUrl('pesquisa');
 
-    const main = document.getElementById("main");
+    // Reseta o margin do main
+    const main = DOM.main;
     main.style.marginTop = `0px`;
 
-    renderFilters(url);
+    // Chama a função de filtros 
+    await renderFilters(url);
 
+    // Caso tenha alguma pesquisa na url ?pesquisa, chama a função que carrega o conteudo da pesquisa
     if (pesquisa) {
         renderSearch(url, pesquisa);
         return;
     }
 
-    hiddenDefaulContent("no");
+    // Caso não tenha pesquisa ele vai não vai deixar invisivel o conteudo padrão da página
+    hiddenDefaulContent(false);
 
     // Chama e armazena o retorno das funções que consomem a API;
     const melhoresAnimes = await fetchAPI(`/top/${url}`);
     const temporadaAnimes = await fetchAPI("/seasons/now");
 
-    // Funções para carregar conteúdos na página
-    setCards(melhoresAnimes, placeholders[0]);
-    setCards(temporadaAnimes, placeholders[1]);
+    // Funções para settar os cards e slides na página
+    setCards(melhoresAnimes, DOM.placeholders.melhores);
+    setCards(temporadaAnimes, DOM.placeholders.temporada);
     setSlides(melhoresAnimes);
 
 }
 
+// Carrega os filtros/generos
 async function renderFilters(url) {
     const generos = await fetchAPI(`/genres/${url}`);
-    setGeneros(generos);
+    // Funções para settar os generos na aside
+    setGeneros(generos, DOM.placeholders.generos);
 }
 
+// Carrega o conteudo pesquisado e esconde o conteudo padrão da página
 async function renderSearch(url, pesquisa) {
     const conteudoPesquisado = await fetchAPI(`/${url}?q=${pesquisa}`);
-    hiddenDefaulContent("yes");
+    hiddenDefaulContent(true);
 
+    // Altero o texto do titulo para o valor da pesquisa e chama a função para setar os cards
     document.getElementById("titulo-pesquisa").textContent = pesquisa;
-    setCards(conteudoPesquisado, placeholders[3]);
+    setCards(conteudoPesquisado, DOM.placeholders.pesquisa);
 }
