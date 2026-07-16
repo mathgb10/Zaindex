@@ -27,24 +27,27 @@ async function renderContent() {
     const url = getUrl('filtro') || "anime";
     const pesquisa = getUrl('pesquisa');
 
+    const main = document.getElementById("main");
+    main.style.marginTop = `0px`;
+
     renderFilters(url);
-    
+
     if (pesquisa) {
         renderSearch(url, pesquisa);
         return;
     }
-    
+
     hiddenDefaulContent("no");
-    
+
     // Chama e armazena o retorno das funções que consomem a API;
     const melhoresAnimes = await fetchAPI(`/top/${url}`);
     const temporadaAnimes = await fetchAPI("/seasons/now");
-    
+
     // Funções para carregar conteúdos na página
     setCards(melhoresAnimes, placeholders[0]);
     setCards(temporadaAnimes, placeholders[1]);
     setSlides(melhoresAnimes);
-    
+
 }
 
 async function renderFilters(url) {
