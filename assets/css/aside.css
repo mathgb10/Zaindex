@@ -1,13 +1,12 @@
 aside {
     background: var(--background2);
-    min-height: 100vh;
     border: 1px solid var(--placeholder);
     display: flex;
     flex-direction: column;
     flex: 0 0 17em;
     padding: 30px 10px;
     align-items: center;
-    gap: 3em;
+    gap: 1em;
 }
 
 aside .searchbar {
@@ -81,17 +80,31 @@ aside div form button {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5px;
 }
 
 .div-input{
-    width: 50%;
+    width: 49%;
     display: flex;
-    gap: 10px;
+    padding: 3px;
+    gap: 3px;
     align-items: center;
+    background: var(--background);
+    border: 1px solid var(--placeholder);
+    &:focus-within{
+        border-color: var(--hoverColor);
+        color: var(--hoverColor);
+    }
 }
 
 .div-input input{
     display: flex;
+}
+
+.div-input span{
+    font-style: italic;
+    font-weight: 500;
 }
 
 #btn-mostrar{

@@ -2,6 +2,9 @@
     padding: 30px;
     width: 90%;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 #melhores-placeholder,#temporada-placeholder,#pesquisa-placeholder{
@@ -14,18 +17,44 @@
 }
 
 .card{
+    background: var(--placeholder);
     display: flex;
+    border-bottom: 2px solid transparent;
     flex-direction: column;
     align-items: center;
-    max-width:200px;
+    padding: 5px;
+    width:200px;
+    min-width: 200px;
     gap: 5px;
     &:hover{
-        scale: 1.1;
+        border-color: var(--hoverColor) ;
     }
 }
 
+.card-header{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
 .card img{
-    width: 200px;
-    height: 400px;
+    width: 100%;
+    height: 255px;
     background: var(--placeholder);
+}
+
+#score{
+    display: flex;
+    justify-content: space-between;
+}
+
+#nota{
+    color: #a0a0a098;
+}
+
+#estrelas{
+    color: #EFBF04;
 }

@@ -7,7 +7,11 @@ function createCards(item) {
     card.className = "card";
     card_header.className = "card-header";
     card_img.src = item.images.webp.large_image_url;
-    card_header.innerHTML = `<p>${item.title}</p>`;
+
+    const nota = item.score / 2;
+    const estrela = `<i class="fa-solid fa-star"></i>`;
+
+    card_header.innerHTML = `<p>${item.title}</p> <div id='score'><p id='estrelas'>${estrela.repeat(nota)}</p><p id='nota'>${item.score}</p></div>`;
 
     card.append(card_img, card_header);
     return card;

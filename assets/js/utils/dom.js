@@ -32,7 +32,7 @@ const DOM = {
 
 // Zera o conteudo dos placeholders
 function clearContent() {
-    DOM.placeholders.forEach((e) => {
+    Object.values(DOM.placeholders).forEach((e) => {
         e.innerHTML = "";
     })
 }
