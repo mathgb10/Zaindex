@@ -22,7 +22,14 @@ function createCards(item) {
     btn_overlay.className = "btns-overlay";
     overlay.className = "card-overlay";
 
-    txt_overlay.textContent = `${item.synopsis}`;
+    // Limitar o tamanho da sinopse no card
+    const sinopse = (item.synopsis ?? "Sinopse não disponível.").split(" ");
+    while (sinopse.length > 30){
+        sinopse.pop();
+    }
+    const pontos = sinopse.length == 30 ? "..." : "";
+
+    txt_overlay.innerHTML = `<p id='nota'>Sinopse</p>${sinopse.join(" ")+pontos}`;
     btn_overlay.innerHTML = `<div><button><i class="fa-solid fa-play"></i>Veja Mais</button></div>`
     
     overlay.append(txt_overlay,btn_overlay);
