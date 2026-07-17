@@ -5,3 +5,7 @@
 .wrap{
     flex-wrap: wrap;
 }
+
+.show{
+    display: flex;
+}

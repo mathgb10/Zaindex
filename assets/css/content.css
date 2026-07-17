@@ -25,6 +25,7 @@
     padding: 5px;
     width:200px;
     min-width: 200px;
+    position: relative;
     gap: 5px;
     &:hover{
         border-color: var(--hoverColor) ;
@@ -57,4 +58,39 @@
 
 #estrelas{
     color: #EFBF04;
+}
+
+.card-overlay{
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    background: #111111ea;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    flex-direction: column;
+}
+
+.txt-overlay{
+    height: 75%;
+    overflow: auto;
+    color: var(--background);
+}
+
+.btns-overlay{
+    width: 100%;
+}
+
+.btns-overlay button{
+    width: 100%;
+    border: none;
+    color: var(--background);
+    background: var(--principalColor);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }

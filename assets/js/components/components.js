@@ -12,8 +12,31 @@ function createCards(item) {
     const estrela = `<i class="fa-solid fa-star"></i>`;
 
     card_header.innerHTML = `<p>${item.title}</p> <div id='score'><p id='estrelas'>${estrela.repeat(nota)}</p><p id='nota'>${item.score}</p></div>`;
+    
+    // Overlay com informações no hover
+    const overlay = document.createElement("div");
+    const txt_overlay = document.createElement("p");
+    const btn_overlay = document.createElement("div");
 
-    card.append(card_img, card_header);
+    txt_overlay.className = "txt-overlay";
+    btn_overlay.className = "btns-overlay";
+    overlay.className = "card-overlay";
+
+    txt_overlay.textContent = `${item.synopsis}`;
+    btn_overlay.innerHTML = `<div><button><i class="fa-solid fa-play"></i>Veja Mais</button></div>`
+    
+    overlay.append(txt_overlay,btn_overlay);
+
+    card.append(card_img, card_header,overlay);
+
+    card.addEventListener("mouseenter",()=>{
+        overlay.classList.add("show");
+    })
+
+    card.addEventListener("mouseleave",()=>{
+        overlay.classList.remove("show");
+    })
+
     return card;
 }
 
