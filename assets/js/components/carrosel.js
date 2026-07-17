@@ -8,9 +8,12 @@ function setSlides(r) {
     const tamanho = resultado.data.length;
 
     // Salvo os resultados da minha função que sorteia numeros com o mínimo 1 e máximo do length da resposta
-    for (let i = 0; i < 4; i++) {
-        const index = sortNumeros(0, tamanho - 1);
-        slides.push(resultado.data[index]);
+    while (slides.length < 4) {
+        let index = sortNumeros(0, tamanho - 1);
+        // Caso o valor já exista no "slides" vou passar reto se não vou incluir no array "slides" 
+        if (!slides.includes(resultado)) {
+            slides.push(resultado.data[index]);
+        }
     }
 
     setCarrosel()
