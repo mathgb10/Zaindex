@@ -20,6 +20,7 @@
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
         <header class="logo">
             <h1>
@@ -39,21 +40,17 @@
         </div>
     </nav>
 
+    <!-- Carrosel -->
     <section class="carrosel">
-
         <img id="img-placeholder" src="" alt="">
-
         <div class="overlay"></div>
-
         <div id="infos-placeholder">
             <h1 id="txt-placeholder">Carregando...</h1>
-
             <button id="btn-placeholder">
                 <i class="fa-solid fa-play"></i>
                 Veja mais
             </button>
         </div>
-
         <div class="carousel-dots">
             <span class="dot active"></span>
             <span class="dot"></span>
@@ -62,8 +59,11 @@
         </div>
     </section>
 
+    <!-- Conteudo Principal -->
     <main id="main">
+        <!-- Sidebar -->
         <aside>
+            <!-- Pesquisa -->
             <div class="searchbar">
                 <h3>Pesquisa e Filtros:</h3>
                 <form onsubmit="makeSearch(event)" id="form-pesquisa">
@@ -74,9 +74,9 @@
                 </form>
                 <button onclick="refreshApp()" id="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i></button>
             </div>
+            <!-- Generos -->
             <div class="filtros">
                 <div id="generos-placeholder">
-
                 </div>
                 <div>
                     <button id="btn-mostrar" onclick="showMore()">Mostrar mais</button>
@@ -84,8 +84,9 @@
             </div>
         </aside>
 
+        <!-- Conteudo -->
         <section class="main-content">
-
+            <!-- Resultado Pesquisa -->
             <div class="content-search">
                 <header>
                     <h2 id="titulo-pesquisa"></h2>

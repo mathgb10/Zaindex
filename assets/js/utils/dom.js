@@ -19,8 +19,8 @@ const DOM = {
     placeholders: {
         melhores: document.getElementById("melhores-placeholder"),
         temporada: document.getElementById("temporada-placeholder"),
-        generos: document.getElementById("generos-placeholder"),
         pesquisa: document.getElementById("pesquisa-placeholder"),
+        generos: document.getElementById("generos-placeholder"),
     },
     // Placeholders dentro dos placeholders de conteudo
     placeholdersCarrosel: {
@@ -32,9 +32,9 @@ const DOM = {
 
 // Zera o conteudo dos placeholders
 function clearContent() {
-    Object.values(DOM.placeholders).forEach((e) => {
-        e.innerHTML = "";
-    })
+    DOM.placeholders.melhores.innerHTML = "";
+    DOM.placeholders.temporada.innerHTML = "";
+    DOM.placeholders.pesquisa.innerHTML = "";
 }
 
 // Esconde o conteudo padrão, para quando uma pesquisa for realizada, caso não tenha mais uma pesquisa ele volta
@@ -48,7 +48,7 @@ function hiddenDefaulContent(hidden) {
     const main = DOM.main;
     const nav = DOM.nav;
     const altura_navbar = nav.offsetHeight;
-    
+
     if (hidden == false) {
         content.forEach((e) => {
             e.classList.remove("hidden");

@@ -61,6 +61,7 @@ async function renderFilters(url) {
 
 // Carrega o conteudo pesquisado e esconde o conteudo padrão da página
 async function renderSearch(url, pesquisa) {
+    clearContent("withoutGeneros");
     const conteudoPesquisado = await fetchAPI(`/${url}?q=${pesquisa}`);
     hiddenDefaulContent(true);
 
