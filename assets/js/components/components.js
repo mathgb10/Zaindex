@@ -12,7 +12,7 @@ function createCards(item) {
     const estrela = `<i class="fa-solid fa-star"></i>`;
 
     card_header.innerHTML = `<p>${item.title}</p> <div id='score'><p id='estrelas'>${estrela.repeat(nota)}</p><p id='nota'>${item.score}</p></div>`;
-    
+
     // Overlay com informações no hover
     const overlay = document.createElement("div");
     const txt_overlay = document.createElement("p");
@@ -24,23 +24,23 @@ function createCards(item) {
 
     // Limitar o tamanho da sinopse no card
     const sinopse = (item.synopsis ?? "Sinopse não disponível.").split(" ");
-    while (sinopse.length > 30){
+    while (sinopse.length > 30) {
         sinopse.pop();
     }
     const pontos = sinopse.length == 30 ? "..." : "";
 
-    txt_overlay.innerHTML = `<p id='nota'>Sinopse</p>${sinopse.join(" ")+pontos}`;
-    btn_overlay.innerHTML = `<div><button><i class="fa-solid fa-play"></i>Veja Mais</button></div>`
-    
-    overlay.append(txt_overlay,btn_overlay);
+    txt_overlay.innerHTML = `<p id='nota'>Sinopse</p>${sinopse.join(" ") + pontos}`;
+    btn_overlay.innerHTML = `<div><button onclick='setAnimeURL(${item.mal_id})'><i class="fa-solid fa-play"></i>Veja Mais</button></div>`
 
-    card.append(card_img, card_header,overlay);
+    overlay.append(txt_overlay, btn_overlay);
 
-    card.addEventListener("mouseenter",()=>{
+    card.append(card_img, card_header, overlay);
+
+    card.addEventListener("mouseenter", () => {
         overlay.classList.add("show");
     })
 
-    card.addEventListener("mouseleave",()=>{
+    card.addEventListener("mouseleave", () => {
         overlay.classList.remove("show");
     })
 
@@ -63,4 +63,11 @@ function createGeneros(item) {
 
     div.append(input, span);
     return div;
+}
+
+function createCardsEsqueleto(id) {
+    const url = new URL(window.location);
+    url.searchParams.set("id", id);
+    window.location.href = url;
+    // window.location.href = window.location.href + `?id=${conteudo.mal_id}`;
 }

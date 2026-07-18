@@ -8,12 +8,7 @@ function setCarrosel() {
 
     img.src = conteudo.images.webp.large_image_url;
     title.innerText = conteudo.title;
-    btn.onclick = () => {
-        const url = new URL(window.location);
-        url.searchParams.set("id", conteudo.mal_id);
-        window.location.href = url;
-        // window.location.href = window.location.href + `?id=${conteudo.mal_id}`;
-    };
+    btn.onclick = ()=>setAnimeURL(conteudo.mal_id);
 }
 
 // Cards de melhores animes/mangas e etc.

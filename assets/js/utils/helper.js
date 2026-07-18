@@ -14,3 +14,10 @@ function refreshApp() {
         console.log("❌ Erro: " + error);
     }
 }
+
+function setAnimeURL(id) {
+    const url = new URL(window.location);
+    url.searchParams.set("id", id);
+    window.location.href = url;
+    // window.location.href = window.location.href + `?id=${conteudo.mal_id}`;
+}
