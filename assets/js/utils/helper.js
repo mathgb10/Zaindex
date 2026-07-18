@@ -15,6 +15,7 @@ function refreshApp() {
     }
 }
 
+// Coloca um parametro na URL com o id da obra
 function setAnimeURL(id) {
     const url = new URL(window.location);
     url.searchParams.set("id", id);

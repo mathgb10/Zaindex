@@ -16,6 +16,7 @@ async function fetchAPI(endpoint) {
                 errosApi(endpoint);
                 return;
             }
+            // Coloca no JSON a "validade" de 24hrs apartir do momento que salva o localStorage
             const resultado = await res.json();
             const validade = Date.now()+(24*60*60*1000);
             resultado.validade = validade;
