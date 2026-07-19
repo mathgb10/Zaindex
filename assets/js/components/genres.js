@@ -1,3 +1,21 @@
+// Cria uma div com input radio e uma label informando genero  e retorna as mesmas
+function createGeneros(item) {
+    const div = document.createElement("div");
+    const input = document.createElement("input");
+    const span = document.createElement("span");
+
+    div.className = "div-input";
+
+    input.className = "filtro-input";
+    input.type = "radio"
+    input.id = item.mal_id;
+    input.name = "filtro-input";
+    span.textContent = item.name;
+
+    div.append(input, span);
+    return div;
+}
+
 // Se a largura da tela for maior ou igual 768px, as divs superiores a de número 30, passam a ter a classe hidden
 // Afim de não exibir muitos gêneros de uma só vez
 // Se for não for maior ou igual 768 adiciona a classe hidden nas divs superiores a de número 10

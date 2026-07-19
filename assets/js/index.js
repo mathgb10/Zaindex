@@ -1,23 +1,16 @@
 // Marca o btn ativo, recupera a pesquisa na função search() e carrega o conteudo inicial
 window.onload = () => {
-    // Coleta os parametros na URL ou seja o ?filtro
-    const url = getUrl('filtro');
-    const btnsLinks = DOM.btnsLinks;
+    startPage();
+}
 
-    // Vai percorrer os btns e caso o parametro informado tenha valor igual ao data "link" ele ficara com a classe active
-    for (let i = 0; i < btnsLinks.length; i++) {
-        if (btnsLinks[i].dataset.link === url) {
-            btnsLinks[i].classList.add("active");
-            // Caso nenhum filtro seja informado, mantém a Home como página ativa.
-        } else {
-            if (btnsLinks[i].dataset.link == 'index' && url == null) {
-                btnsLinks[i].classList.add("active");
-            }
-        }
-    }
-
+function startPage(){
+    setActiveLinks();
     search(getUrl('pesquisa'));
     renderContent();
+}
+
+async function renderHome() {
+    return;
 }
 
 // Carrega conteudo da página o conteudo principal
@@ -53,7 +46,6 @@ async function renderContent() {
 // Carrega os filtros/generos
 async function renderFilters() {
     const url = getUrl('filtro') || "anime";
-    console.log(url);
     const generos = await fetchAPI(`/genres/${url}`);
     // Funções para settar os generos na aside
     setGeneros(generos, DOM.placeholders.generos);
