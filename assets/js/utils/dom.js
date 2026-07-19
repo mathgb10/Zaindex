@@ -21,7 +21,6 @@ const DOM = {
         temporada: document.getElementById("temporada-placeholder"),
         pesquisa: document.getElementById("pesquisa-placeholder"),
         generos: document.getElementById("generos-placeholder"),
-        teste: document.getElementById("teste-placeholder"),
     },
     // Placeholders dentro dos placeholders de conteudo
     placeholdersCarrosel: {

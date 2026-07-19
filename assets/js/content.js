@@ -8,25 +8,34 @@ function setCarrosel() {
 
     img.src = conteudo.images.webp.large_image_url;
     title.innerText = conteudo.title;
-    btn.onclick = ()=>setAnimeURL(conteudo.mal_id);
+    btn.onclick = () => setAnimeURL(conteudo.mal_id);
 }
 
 // Cards de melhores animes/mangas e etc.
-function setCards(resultado, placeholder){;
+function setCards(resultado, placeholder) {
+    ;
     for (let i = 0; i < resultado.data.length; i++) {
         placeholder.appendChild(createCards(resultado.data[i]));
     }
 }
 
 // Cards de melhores animes/mangas e etc.
-function setCardsEsqueleto(placeholder){;
-    for (let i = 0; i < 10; i++) {
-        placeholder.appendChild(createCardsEsqueleto());
-    }
+function setLoading() {
+    const placeholdersCards = [
+        DOM.placeholders.melhores,
+        DOM.placeholders.temporada,
+        DOM.placeholders.pesquisa
+    ];
+
+    placeholdersCards.forEach((e) => {
+        for (let i = 0; i < 5; i++) {
+            e.appendChild(createLoading());
+        }
+    })
 }
 
 // Gêneros de animes/mangas na aside 
-function setGeneros(resultado,placeholder) {
+function setGeneros(resultado, placeholder) {
     // Será adicionado a aside os gêneros 
     for (let i = 0; i < resultado.data.length; i++) {
         placeholder.appendChild(createGeneros(resultado.data[i]));

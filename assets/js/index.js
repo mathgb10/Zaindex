@@ -25,32 +25,29 @@ async function renderContent() {
     const url = getUrl('filtro') || "anime";
     const pesquisa = getUrl('pesquisa');
 
-    // Reseta o margin do main
-    const main = DOM.main;
-    main.style.marginTop = `0px`;
+    DOM.main.style.marginTop = "0px";
 
-    // Chama a função de filtros 
+    clearContent();
+
+    setLoading();
+
     await renderFilters();
 
-    // Caso tenha alguma pesquisa na url ?pesquisa, chama a função que carrega o conteudo da pesquisa
     if (pesquisa) {
         renderSearch(url, pesquisa);
         return;
     }
 
-    // Caso não tenha pesquisa ele vai não vai deixar invisivel o conteudo padrão da página
     hiddenDefaulContent(false);
 
-    // Chama e armazena o retorno das funções que consomem a API;
-    const melhoresAnimes = await fetchAPI(`/top/${url}`);
-    const temporadaAnimes = await fetchAPI("/seasons/now");
+    const melhores = await fetchAPI(`/top/${url}`);
+    const temporada = await fetchAPI("/seasons/now");
 
-    // Funções para settar os cards e slides na página
-    setCards(melhoresAnimes, DOM.placeholders.melhores);
-    setCards(temporadaAnimes, DOM.placeholders.temporada);
-    setSlides(melhoresAnimes);
-    setCardsEsqueleto(DOM.placeholders.teste);
+    clearContent();
 
+    setCards(melhores, DOM.placeholders.melhores);
+    setCards(temporada, DOM.placeholders.temporada);
+    setSlides(melhores);
 }
 
 // Carrega os filtros/generos

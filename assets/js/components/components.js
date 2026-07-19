@@ -65,16 +65,20 @@ function createGeneros(item) {
     return div;
 }
 
-function createCardsEsqueleto() {
+function createLoading() {
     const card = document.createElement("div");
     const card_img = document.createElement("div");
     const card_header = document.createElement("div");
 
-    card.classList.add("card", "esqueto");
-    card_header.classList.add("card-header","esqueleto");
+    card.classList.add("card");
+    card_header.classList.add("card-header");
     card_img.classList.add("card-img","esqueleto");
 
-    card_header.innerHTML = `<p class='esqueleto'></p> <div id='score' class='esqueleto'><p id='estrelas'></p><p id='nota' class='esqueleto'></p></div>`;
+    card_header.innerHTML = `<p class='esqueleto'></p>
+     <div id='score' class='esqueleto' >
+        <p id='estrelas' class=''></p>
+        <p id='nota' class=''></p>
+    </div>`;
 
     card.append(card_img, card_header);
     return card;

@@ -11,6 +11,8 @@
 }
 
 .esqueleto {
+  min-width: 100%;
+  height: 25px;
   background: linear-gradient(
     90deg, 
     #ffffff44 25%, 
@@ -23,7 +25,6 @@
   display: inline-block;
 }
 
-/* 2. Create the shimmer moving effect */
 @keyframes skeleton-loading {
   0% {
     background-position: 200% 0;
