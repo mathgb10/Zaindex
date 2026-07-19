@@ -30,6 +30,11 @@ const DOM = {
     }
 }
 
+function prepareCards() {
+    clearContent();
+    setLoading();
+}
+
 // Zera o conteudo dos placeholders
 function clearContent() {
     DOM.placeholders.melhores.innerHTML = "";

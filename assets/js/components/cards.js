@@ -59,7 +59,7 @@ function createLoading() {
     const card_img = document.createElement("div");
     const card_header = document.createElement("div");
 
-    card.classList.add("card");
+    card.classList.add("card", "cardesqueleto");
     card_header.classList.add("card-header");
     card_img.classList.add("card-img", "esqueleto");
 

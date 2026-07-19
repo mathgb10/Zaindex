@@ -3,7 +3,7 @@ window.onload = () => {
     startPage();
 }
 
-function startPage(){
+function startPage() {
     setActiveLinks();
     search(getUrl('pesquisa'));
     renderContent();
@@ -20,11 +20,7 @@ async function renderContent() {
 
     DOM.main.style.marginTop = "0px";
 
-    clearContent();
-
-    setLoading();
-
-    await renderFilters();
+    renderFilters();
 
     if (pesquisa) {
         renderSearch(url, pesquisa);
@@ -33,8 +29,18 @@ async function renderContent() {
 
     hiddenDefaulContent(false);
 
+    showLoading([
+        DOM.placeholders.melhores,
+        DOM.placeholders.temporada
+    ]);
+
     const melhores = await fetchAPI(`/top/${url}`);
     const temporada = await fetchAPI("/seasons/now");
+
+    hideLoading([
+        DOM.placeholders.melhores,
+        DOM.placeholders.temporada
+    ]);
 
     clearContent();
 
@@ -53,10 +59,17 @@ async function renderFilters() {
 
 // Carrega o conteudo pesquisado e esconde o conteudo padrão da página
 async function renderSearch(url, pesquisa) {
-    clearContent("withoutGeneros");
-    const conteudoPesquisado = await fetchAPI(`/${url}?q=${pesquisa}`);
     hiddenDefaulContent(true);
 
+    showLoading([
+        DOM.placeholders.pesquisa
+    ]);
+
+    const conteudoPesquisado = await fetchAPI(`/${url}?q=${pesquisa}`);
+
+    hideLoading([
+        DOM.placeholders.pesquisa
+    ]);
     // Altero o texto do titulo para o valor da pesquisa e chama a função para setar os cards
     document.getElementById("titulo-pesquisa").textContent = pesquisa;
     setCards(conteudoPesquisado, DOM.placeholders.pesquisa);

@@ -20,19 +20,19 @@ function setCards(resultado, placeholder) {
 }
 
 // Cards de melhores animes/mangas e etc.
-function setLoading() {
-    const placeholdersCards = [
-        DOM.placeholders.melhores,
-        DOM.placeholders.temporada,
-        DOM.placeholders.pesquisa
-    ];
+// function setLoading() {
+//     const placeholdersCards = [
+//         DOM.placeholders.melhores,
+//         DOM.placeholders.temporada,
+//         DOM.placeholders.pesquisa
+//     ];
 
-    placeholdersCards.forEach((e) => {
-        for (let i = 0; i < 5; i++) {
-            e.appendChild(createLoading());
-        }
-    })
-}
+//     placeholdersCards.forEach((e) => {
+//         for (let i = 0; i < 5; i++) {
+//             e.appendChild(createLoading());
+//         }
+//     })
+// }
 
 // Gêneros de animes/mangas na aside 
 function setGeneros(resultado, placeholder) {
