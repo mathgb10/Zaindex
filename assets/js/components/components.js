@@ -65,9 +65,17 @@ function createGeneros(item) {
     return div;
 }
 
-function createCardsEsqueleto(id) {
-    const url = new URL(window.location);
-    url.searchParams.set("id", id);
-    window.location.href = url;
-    // window.location.href = window.location.href + `?id=${conteudo.mal_id}`;
+function createCardsEsqueleto() {
+    const card = document.createElement("div");
+    const card_img = document.createElement("div");
+    const card_header = document.createElement("div");
+
+    card.classList.add("card", "esqueto");
+    card_header.classList.add("card-header","esqueleto");
+    card_img.classList.add("card-img","esqueleto");
+
+    card_header.innerHTML = `<p class='esqueleto'></p> <div id='score' class='esqueleto'><p id='estrelas'></p><p id='nota' class='esqueleto'></p></div>`;
+
+    card.append(card_img, card_header);
+    return card;
 }

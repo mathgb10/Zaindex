@@ -18,6 +18,13 @@ function setCards(resultado, placeholder){;
     }
 }
 
+// Cards de melhores animes/mangas e etc.
+function setCardsEsqueleto(placeholder){;
+    for (let i = 0; i < 10; i++) {
+        placeholder.appendChild(createCardsEsqueleto());
+    }
+}
+
 // Gêneros de animes/mangas na aside 
 function setGeneros(resultado,placeholder) {
     // Será adicionado a aside os gêneros 

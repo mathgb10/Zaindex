@@ -30,7 +30,7 @@ async function renderContent() {
     main.style.marginTop = `0px`;
 
     // Chama a função de filtros 
-    await renderFilters(url);
+    await renderFilters();
 
     // Caso tenha alguma pesquisa na url ?pesquisa, chama a função que carrega o conteudo da pesquisa
     if (pesquisa) {
@@ -49,11 +49,14 @@ async function renderContent() {
     setCards(melhoresAnimes, DOM.placeholders.melhores);
     setCards(temporadaAnimes, DOM.placeholders.temporada);
     setSlides(melhoresAnimes);
+    setCardsEsqueleto(DOM.placeholders.teste);
 
 }
 
 // Carrega os filtros/generos
-async function renderFilters(url) {
+async function renderFilters() {
+    const url = getUrl('filtro') || "anime";
+    console.log(url);
     const generos = await fetchAPI(`/genres/${url}`);
     // Funções para settar os generos na aside
     setGeneros(generos, DOM.placeholders.generos);
