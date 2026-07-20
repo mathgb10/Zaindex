@@ -4,7 +4,7 @@ function errosApi(e) {
 }
 
 async function fetchAPI(endpoint) {
-    const URL = `https://api.jikan.moe/v4`;
+    const URL = `https://api.tenrai.org/v1`;
 
     // Verifica se não existe a resposta da API na última requisição salva no localStorage
     // Se não existir ele consome a API e salva no localStorage
