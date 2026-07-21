@@ -33,7 +33,7 @@ function hideGeneros() {
 // É executada quando o btn de Mostrar Mais ou Mostrar Menos é clicado
 // Dependendo da situação ele vai exibir ou esconder alguns filtros
 function showMore() {
-    const divEscondidas = document.querySelectorAll(".hidden");
+    const divEscondidas = document.querySelectorAll(".div-input.hidden");
     const divs = document.querySelectorAll(".div-input");
     const btnShow = DOM.btnShow;
 
